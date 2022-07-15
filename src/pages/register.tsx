@@ -4,11 +4,13 @@ import { UserHttpStore } from '../services/user.store';
 
 
 export function Register() {
+    
        
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         password: '',
+        rptpassword: '',
         role: ''
     });
     let navigate = useNavigate();
@@ -36,7 +38,7 @@ export function Register() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Username"
+                    placeholder="Name"
                 />
                 <input
                     type="text"
@@ -51,6 +53,13 @@ export function Register() {
                     value={formData.password}
                     onChange={handleChange}
                     placeholder="Password"
+                />
+                <input
+                    type="password"
+                    name="rptpassword"
+                    value={formData.rptpassword}
+                    onChange={handleChange}
+                    placeholder="Repeat Password"
                 />
 
                 <select

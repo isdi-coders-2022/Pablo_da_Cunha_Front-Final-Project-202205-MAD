@@ -24,8 +24,8 @@ function App() {
             .then((beers) => dispatcher(loadBeerAction(beers)));
     }, [apiArtsits, apiBeers, dispatcher]);
     const HomePage = React.lazy(() => import('./pages/home'));
-    const BarPage = React.lazy(() => import('./pages/bar'));
-    const BeerPage = React.lazy(() => import('./pages/beer'));
+    const BarPage = React.lazy(() => import('./pages/bars'));
+    const BeerPage = React.lazy(() => import('./pages/brews'));
     const LoginPage = React.lazy(() => import('./pages/login'));
     const RegisterPage = React.lazy(() => import('./pages/register'));
 
