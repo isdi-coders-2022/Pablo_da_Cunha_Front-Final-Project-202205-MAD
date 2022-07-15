@@ -8,8 +8,11 @@ export function Header({ menuOptions }: { menuOptions: Array<iRouterItem> }) {
             <ul>
                 {menuOptions.map((route) => (
                     <Link to={route.path}key={route.path}>{route.label}</Link>
+                    
+
                 ))}
             </ul>
+            
         </div>
     );
 }

@@ -29,7 +29,7 @@ export function Login() {
                 text: 'Email or password are incorrect',
                 icon: 'error',
                 confirmButtonText: 'Thank you so much, best page ever'
-              })
+              });
         }
     };
 
