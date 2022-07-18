@@ -1,9 +1,9 @@
-export function Brews() {
+export function MyBrews() {
     return (
         <div>
-            <h1>Brews</h1>
+            <h1>MyBrews</h1>
         </div>
     );
 }
 
-export default Brews;
+export default MyBrews;

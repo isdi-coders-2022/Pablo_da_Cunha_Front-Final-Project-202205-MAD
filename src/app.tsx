@@ -23,25 +23,53 @@ function App() {
             .getAllBeers()
             .then((beers) => dispatcher(loadBeerAction(beers)));
     }, [apiArtsits, apiBeers, dispatcher]);
+
+
     const HomePage = React.lazy(() => import('./pages/home'));
-    const BarPage = React.lazy(() => import('./pages/bars'));
-    const BeerPage = React.lazy(() => import('./pages/brews'));
+    const BarsPage = React.lazy(() => import('./pages/bars'));
+    const BrewsPage = React.lazy(() => import('./pages/brews'));
+    const MyBrews = React.lazy(() => import('./pages/mybrews'));
+    const Spot = React.lazy(() => import('./pages/spot'));
+    const Brew = React.lazy(() => import('./pages/brew'));
     const LoginPage = React.lazy(() => import('./pages/login'));
     const RegisterPage = React.lazy(() => import('./pages/register'));
 
     const routerOptions: Array<iRouterItem> = [
-        { path: '/', label: 'Home', page: <HomePage></HomePage> },
-               {
+        { 
+            path: '/', 
+            label: 'Home', 
+            page: <HomePage></HomePage> 
+        },
+        {
             path: '/bars',
             label: 'Bars',
-            page: <BarPage></BarPage>,
+            page: <BarsPage></BarsPage>,
         },
         {
             path: '/beers',
             label: 'Beers',
-            page: <BeerPage></BeerPage>,
+            page: <BrewsPage></BrewsPage>,
         },
-        { path: '/login', label: 'Login', page: <LoginPage></LoginPage> },
+        {
+            path: '/mybrews',
+            label: 'MyBrews',
+            page: <MyBrews></MyBrews>,
+        },
+        {
+            path: '/spot',
+            label: 'Spot',
+            page: <Spot></Spot>,
+        },
+        {
+            path: '/brew',
+            label: 'Brew',
+            page: <Brew></Brew>,
+        },
+        { 
+            path: '/login', 
+            label: 'Login', 
+            page: <LoginPage></LoginPage> 
+        },
         {
             path: '/register',
             label: 'Register',

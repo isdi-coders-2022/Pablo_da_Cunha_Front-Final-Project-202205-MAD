@@ -22,6 +22,12 @@ export function Login() {
         if (response.token) {
             dispatch(loadUserAction(response));
             localStorage.setItem('user', JSON.stringify(response));
+            Swal.fire({
+                title: 'You entered your account correctly',
+                text: 'Let`s get Brewing',
+                icon: 'success',
+                confirmButtonText: 'Take me forward!',
+            });
             navigate('/');
         } else {
             Swal.fire({
@@ -58,7 +64,7 @@ export function Login() {
                     onChange={handleChange}
                     placeholder="Password"
                 />
-                <button type="submit">Login</button>
+                <button type="submit">Sign In</button>
             </form>
         </div>
     );

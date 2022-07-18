@@ -1,5 +1,6 @@
 import { SyntheticEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { UserHttpStore } from '../services/user.store';
 
 
@@ -20,7 +21,20 @@ export function Register() {
     const response = await new UserHttpStore().registerUser(formData);
 
         if (response.name) {
+            Swal.fire({
+                title: 'You created your account correctly',
+                text: 'Now is the time to find your Brew',
+                icon: 'success',
+                confirmButtonText: 'Take me forward!',
+            });
             navigate('/login');
+        } else {
+            Swal.fire({
+                title: 'Error!',
+                text: 'You couldn`t create your account correctly',
+                icon: 'error',
+                confirmButtonText: 'Thank you so much, best page ever'
+              });
         }
     };
 
