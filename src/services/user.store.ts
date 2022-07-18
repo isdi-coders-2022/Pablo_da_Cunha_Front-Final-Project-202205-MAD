@@ -1,4 +1,5 @@
 import { iUser, userWithToken } from '../interfaces/iUser';
+import { getToken } from '../utils/getToken';
 
 export class UserHttpStore {
     apiUrl: string;
@@ -32,7 +33,32 @@ export class UserHttpStore {
             body: JSON.stringify({ beer: beerId }),
         }).then((resp) => resp.json());
     }
+    addFavBeer(userId: string, beerId: string): Promise<iUser> {
+        const token = getToken();
+        return fetch(this.apiUrl + 'fav/' + userId, {
+            headers: {
+                'Content-Type': 'application/json',
 
+                Authorization: 'Bearer ' + token.token,
+            },
+            method: 'PATCH',
+            body: JSON.stringify({ beer: beerId }),
+        }).then((resp) => resp.json());
+    }
+    
+    unFavBeer(userId: string, beerId: string): Promise<iUser> {
+        const token = getToken();
+        return fetch(this.apiUrl + 'unfav/' + userId, {
+            headers: {
+                'Content-Type': 'application/json',
+
+                Authorization: 'Bearer ' + token.token,
+            },
+            method: 'PATCH',
+            body: JSON.stringify({ beer: beerId }),
+        }).then((resp) => resp.json());
+    }
+    
     deleteUser(userId: string): Promise<iUser> {
         return fetch(this.apiUrl + 'delete/' + userId, {
             method: 'DELETE',
