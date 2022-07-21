@@ -1,5 +1,5 @@
-export interface iBeer {
-    id?: string;
+export interface iBrew {
+    _id?: string;
     name: string;
     image: string;
     video: string;

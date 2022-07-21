@@ -1,28 +1,32 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { iBar } from '../interfaces/iBar';
-import { iBeer } from '../interfaces/iBeer';
-import { userWithToken } from '../interfaces/iUser';
+import { iBrew } from '../interfaces/iBrew';
+import { iUser } from '../interfaces/iUser';
 import { barReducer } from '../reducers/bar/bar.reducer';
-import { beerReducer } from '../reducers/beer/beer.reducer';
+import { brewReducer } from '../reducers/brew/brew.reducer';
+import { brewOneReducer } from '../reducers/brewOne/brewOne.reducer';
 import { userReducer } from '../reducers/user/user.reducer';
 
 export interface iStore {
-    beer: Array<iBeer>;
+    brew: Array<iBrew>;
     bar: Array<iBar>;
-    user: userWithToken;
+    user: iUser;
+    brewOne: iBrew;
 }
 
 const preloadedState = {
-    beer: [] as Array<iBeer>,
+    brew: [] as Array<iBrew>,
     bar: [] as Array<iBar>,
-    user: {} as userWithToken,
+    user: {} as iUser,
+    brewOne: {} as iBrew,
 };
 
 export const store = configureStore({
     reducer: {
-        beer: beerReducer,
+        brew: brewReducer,
         bar: barReducer,
         user: userReducer,
+        brewOne: brewOneReducer,
     },
     preloadedState,
 });

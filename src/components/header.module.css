@@ -1,0 +1,18 @@
+header ul {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    text-decoration-color: black;
+    list-style:none;
+
+}
+ 
+nav  ul {
+    color: #ffb015;
+    text-decoration: none;
+  }
+  
+  nav ul :hover {
+    color: #ffb015;
+    text-decoration: none;
+  }

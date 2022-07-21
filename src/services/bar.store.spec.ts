@@ -6,14 +6,14 @@ const bar1: iBar = {
     description: '',
     image: '',
     adress: '',
-    beers: [],
+    brews: [],
 };
 const bar2: iBar = {
     name: '',
     description: '',
     image: '',
     adress: '',
-    beers: [],
+    brews: [],
 };
 
 describe('Given BarHttpStore', () => {

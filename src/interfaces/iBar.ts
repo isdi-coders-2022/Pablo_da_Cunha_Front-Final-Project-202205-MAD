@@ -1,8 +1,10 @@
+import { iBrew } from "./iBrew";
+
 export interface iBar {
-    id?: string;
+    _id?: string;
     name: string;
     description: string;
     image: string;
     adress: string;
-    beers?: Array<string>;
+    brews: Array<iBrew>;
 }

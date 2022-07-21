@@ -5,12 +5,11 @@ const user: iUser = {
     name: '',
     email: '',
     password: '',
-    beers: [],
+    brews: [],
     role: '',
 };
 
 const mockuserWithToken: userWithToken = {
-    token: '',
     user: user,
 };
 
@@ -41,8 +40,8 @@ describe('Given UserHttpStore', () => {
                 json: jest.fn().mockResolvedValue({ ...user, brews: [''] }),
             });
             const api = new UserHttpStore();
-            const response = await api.updateUser((user.id as string), '');
-            expect(response).toEqual({ ...user, beer: [''] });
+            const response = await api.updateUser((user._id as string), user);
+            expect(response).toEqual({ ...user, brew: [''] });
         });
     });
     describe('When deleteUser is called', () => {
@@ -51,7 +50,7 @@ describe('Given UserHttpStore', () => {
                 json: jest.fn().mockResolvedValue({}),
             });
             const api = new UserHttpStore();
-            const response = await api.deleteUser(( user.id as string));
+            const response = await api.deleteUser(( user._id as string));
             expect(response).toEqual({});
         });
     });

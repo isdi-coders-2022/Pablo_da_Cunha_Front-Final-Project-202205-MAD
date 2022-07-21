@@ -1,5 +1,5 @@
-import { iUser, userWithToken } from '../interfaces/iUser';
-import { getToken } from '../utils/getToken';
+import { iUser } from '../interfaces/iUser';
+// import { getToken } from '../utils/getToken';
 
 export class UserHttpStore {
     apiUrl: string;
@@ -17,7 +17,8 @@ export class UserHttpStore {
         }).then((resp) => resp.json());
     }
 
-    loginUser(user: iUser): Promise<userWithToken> {
+    loginUser(user: iUser): Promise<any> {
+                
         return fetch(this.apiUrl + 'login', {
             method: 'POST',
             body: JSON.stringify({ email: user.email, password: user.password }),
@@ -27,43 +28,62 @@ export class UserHttpStore {
         }).then((resp) => resp.json());
     }
     
-    updateUser(userId: string, beerId: string): Promise<iUser> {
-        return fetch(this.apiUrl + userId, {
+    updateUser(userId: string, updatedUser:Partial<iUser>): Promise<iUser> {
+        const token = localStorage.getItem('token')
+        return fetch(this.apiUrl + `${userId}`, {
             method: 'PATCH',
-            body: JSON.stringify({ beer: beerId }),
-        }).then((resp) => resp.json());
-    }
-    addFavBeer(userId: string, beerId: string): Promise<iUser> {
-        const token = getToken();
-        return fetch(this.apiUrl + 'fav/' + userId, {
-            headers: {
+            body: JSON.stringify(updatedUser),
+            headers: { 
                 'Content-Type': 'application/json',
-
-                Authorization: 'Bearer ' + token.token,
-            },
-            method: 'PATCH',
-            body: JSON.stringify({ beer: beerId }),
+                authorization: `Bearer ${token}`}
         }).then((resp) => resp.json());
     }
+   
+
+    addFavBrew(brewId: string){
+        const token = localStorage.getItem('token')
+        return fetch(
+            this.apiUrl + `fav/${brewId}`, {
+                method: 'PATCH',
+                headers: { Authorization: `Bearer ${token}`},
+
+            }
+        ).then((resp) => resp.json());
+
+
+    }
+
     
-    unFavBeer(userId: string, beerId: string): Promise<iUser> {
-        const token = getToken();
-        return fetch(this.apiUrl + 'unfav/' + userId, {
-            headers: {
-                'Content-Type': 'application/json',
+    
+    // unFavBrew(userId: string, brewId: string): Promise<iUser> {
+    //     const token = getToken();
+    //     return fetch(this.apiUrl + 'unfav/' + userId, {
+    //         headers: {
+    //             'Content-Type': 'application/json',
 
-                Authorization: 'Bearer ' + token.token,
-            },
-            method: 'PATCH',
-            body: JSON.stringify({ beer: beerId }),
-        }).then((resp) => resp.json());
-    }
+    //             Authorization: 'Bearer ' + token.token,
+    //         },
+    //         method: 'PATCH',
+    //         body: JSON.stringify({ brew: brewId }),
+    //     }).then((resp) => resp.json());
+    // }
     
     deleteUser(userId: string): Promise<iUser> {
-        return fetch(this.apiUrl + 'delete/' + userId, {
+        const token = localStorage.getItem('token')
+        return fetch(this.apiUrl + userId, {
             method: 'DELETE',
+            headers: { authorization: `Bearer ${token}`}
         }).then((resp) => resp.json());
     }
 
-    
+    getUserByToken(): Promise<iUser> {
+        const token = localStorage.getItem('token')
+        return fetch(this.apiUrl + 'getByToken',{
+        method: 'POST',
+        body: JSON.stringify({}),
+        headers: { 
+            'Content-Type': 'application/json',
+            authorization: `Bearer ${token}`}}).then((resp) => resp.json())
+    }
+
 }
