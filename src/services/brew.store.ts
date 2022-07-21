@@ -1,16 +1,16 @@
-import { iBeer } from '../interfaces/iBeer';
+import { iBrew } from '../interfaces/iBrew';
 
-export class BeerHttpStore {
+export class BrewHttpStore {
     apiUrl: string;
     constructor() {
-        this.apiUrl = 'http://localhost:3400/beer/';
+        this.apiUrl = 'http://localhost:3400/brew/';
     }
 
-    getAllBeers(): Promise<Array<iBeer>> {
+    getAllBrews(): Promise<Array<iBrew>> {
         return fetch(this.apiUrl).then((resp) => resp.json());
     }
 
-    getBeer(id: iBeer['id']): Promise<iBeer> {
+    getBrew(id: iBrew['_id']): Promise<iBrew> {
         if (!id) throw new Error()
         return fetch(this.apiUrl + id.toString()).then((resp) => resp.json());
     }

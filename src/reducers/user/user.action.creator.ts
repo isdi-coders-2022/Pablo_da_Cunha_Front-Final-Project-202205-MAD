@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import { userWithToken } from '../../interfaces/iUser';
+import { iUser, } from '../../interfaces/iUser';
 import { actionTypes } from './user.action.types';
 
 export interface iAction {
@@ -7,12 +7,12 @@ export interface iAction {
     payload: any;
 }
 
-export const loadUserAction = createAction<userWithToken>(
+export const loadUserAction = createAction<iUser>(
     actionTypes['user@load']
 );
-export const deleteUserAction = createAction<userWithToken>(
+export const deleteUserAction = createAction<iUser>(
     actionTypes['user@delete']
 );
-export const updateUserAction = createAction<userWithToken>(
+export const updateUserAction = createAction<iUser>(
     actionTypes['user@update']
 );

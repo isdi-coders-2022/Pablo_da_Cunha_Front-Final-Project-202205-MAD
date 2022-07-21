@@ -1,51 +1,21 @@
-import { useDispatch } from 'react-redux';
-import { iBeer } from '../interfaces/iBeer';
+import { useDispatch, useSelector } from 'react-redux';
+import { iBrew } from '../interfaces/iBrew';
 import { updateUserAction } from '../reducers/user/user.action.creator';
 import { UserHttpStore } from '../services/user.store';
-import Swal from 'sweetalert2';
-import { iUser } from '../interfaces/iUser';
-import { useNavigate } from 'react-router-dom';
-import { getToken } from '../utils/getToken';
+import { iStore } from '../store/store';
 
-export function ButtonAddFav({ user }: { user: iUser }, { beer }: { beer: iBeer }) {
-    const dispatcher = useDispatch();
-    let navigate = useNavigate();
-    const token = getToken();
+export function AddFav({ brew }: { brew: iBrew }) {
+    const dispatch = useDispatch();
+    const user = useSelector((store: iStore) => store.user);
 
-    function handleSubmit() {
-        new UserHttpStore()
-            .addFavBeer((user.id as string), (beer.id as string))
-            .then((_data) => {
-                dispatcher(updateUserAction(token));
-                Swal.fire({
-                    title: 'Tasted',
-                    text: 'You have tasted this beer',
-                    icon: 'success',
-                    confirmButtonText: 'Let`s go',
-                });
-            })
-            .catch((_error) => {
-                Swal.fire({
-                    title: 'You are not logged',
-                    text: 'To complete your brews you have to be logged in',
-                    icon: 'error',
-                    confirmButtonText: 'I`ll log in',
-                });
-                navigate('/login');
+    const handleClick = async () => {
+        const token = localStorage.getItem;
+        const response = await new UserHttpStore().addFavBrew(
+            brew._id as string
+        );
 
-            });
-    }
-    const template = (
-        <>
-            <button
-                className="buttonAddFav"
-                onClick={() => {
-                    handleSubmit();
-                }}
-            >
-                Add Tasted Beer
-            </button>
-        </>
-    );
-    return template;
+        dispatch(updateUserAction(response));
+        localStorage.setItem('user', JSON.stringify({ token, user: response }));
+    };
+    return <button onClick={handleClick}>Add Fav</button>;
 }

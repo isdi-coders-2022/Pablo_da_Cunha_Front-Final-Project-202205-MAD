@@ -1,0 +1,17 @@
+body::before {
+    content: "";
+    position: fixed;
+    background: #040404 url("https://firebasestorage.googleapis.com/v0/b/findyourbrew.appspot.com/o/wallpaperflare-cropped%20(1).jpg?alt=media&token=c847f6ea-bb79-441f-ab32-78141347e5ad") top right no-repeat;
+    background-size: cover;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    z-index: -1;
+  }
+  @media (min-width: 1024px) {
+    body::before {
+      background-attachment: fixed;
+    }
+  }
+  
