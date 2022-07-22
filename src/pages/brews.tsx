@@ -11,9 +11,8 @@ export function Brews() {
         <div>
             <h1>Brews</h1>
             <ul className="">
-                <h2>Barley Brews</h2>                
+                               
                 {brews
-                    .filter((brew) => brew.cereal === 'Barley')
                     .map((brew) => (
                         <li className="" key={brew._id}>
                             <PageBrews brew={brew}></PageBrews>
@@ -24,7 +23,7 @@ export function Brews() {
                         </li>
                     ))}
             </ul>
-            <ul className="">
+            {/* <ul className="">
             <h2>Wheat Brews</h2>
                 {brews
                     .filter((brew) => brew.cereal === 'Wheat')
@@ -107,7 +106,7 @@ export function Brews() {
                             <h3 className="">{brew.style}</h3>
                         </li>
                     ))}
-            </ul>
+            </ul> */}
         </div>
     );
 }

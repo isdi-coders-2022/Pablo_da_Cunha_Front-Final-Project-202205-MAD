@@ -4,27 +4,20 @@ import { SyntheticEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { iStore } from '../store/store';
-import {
-    
-    updateUserAction,
-} from '../reducers/user/user.action.creator';
-
+import { updateUserAction } from '../reducers/user/user.action.creator';
 import { UserHttpStore } from '../services/user.store';
 import Swal from 'sweetalert2';
 
-
 export default function ProfilePage() {
     const user = useSelector((store: iStore) => store.user);
-    
-
     const userStore = new UserHttpStore();
     const dispatcher = useDispatch();
     const navigate = useNavigate();
     const initialState = {
-        name: user?.name,
-        email: user?.email,
-        password: user?.password,
-        role: user?.role,
+        name: '',
+        email: '',
+        password: '',
+        role: '',
     };
 
     const userDelete = {
@@ -34,7 +27,12 @@ export default function ProfilePage() {
         role: '',
     };
     useEffect(() => {
-        setFormData(initialState);
+        setFormData({
+            name: user?.name,
+            email: user?.email,
+            password: user?.password,
+            role: user?.role,
+        });
     }, []);
 
     const [formData, setFormData] = useState(initialState);

@@ -16,7 +16,8 @@ export function Register() {
     const handleSubmit = async (event: SyntheticEvent) => {
         event.preventDefault();
         const response = await new UserHttpStore().registerUser(formData);
-
+        
+        
         if (response.name) {
             Swal.fire({
                 title: 'You created your account correctly',

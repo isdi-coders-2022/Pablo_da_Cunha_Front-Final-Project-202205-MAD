@@ -23,7 +23,7 @@ export function Brew() {
     const [brewData, setBrewData] = useState(initialState);
 
     useEffect(() => {
-        api.getBrew(id).then((data) => {
+        api.getBrew(id as string).then((data) => {
             setBrewData(data);
         });
     }, [api, id]);
