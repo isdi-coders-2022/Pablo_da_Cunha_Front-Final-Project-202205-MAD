@@ -40,15 +40,15 @@ export class UserHttpStore {
     }
    
 
-    addFavBrew(brewId: string){
+    async addFavBrew(brewId: string){
         const token = localStorage.getItem('token')
-        return fetch(
+        const resp = await fetch(
             this.apiUrl + `fav/${brewId}`, {
-                method: 'PATCH',
-                headers: { Authorization: `Bearer ${token}`},
-
-            }
-        ).then((resp) => resp.json());
+            method: 'PATCH',
+            headers: { Authorization: `Bearer ${token}` },
+        }
+        );
+        return await resp.json();
 
 
     }

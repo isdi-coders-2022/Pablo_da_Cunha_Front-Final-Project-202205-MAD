@@ -21,7 +21,7 @@ export function Bar() {
     const [barData, setBarData] = useState(initialState);
 
     useEffect(() => {
-        api.getBar(id).then((data) => {
+        api.getBar(id as string).then((data) => {
             setBarData(data);
         });
     }, [api, id]);
@@ -35,7 +35,7 @@ export function Bar() {
                 <div>
                     <h2>{barData.name}</h2>
                     <p>{barData.description}</p>
-                    <p>{barData.adress}</p>
+                    <p>Adress: {barData.adress}</p>
                 </div>
             </div>
             <ul>

@@ -2,7 +2,7 @@
 import { iRouterItem } from '../interfaces/iRouterItem';
 import './footer.module.css';
 
-export function Footer({ menuOptions }: { menuOptions: Array<iRouterItem> }) {
+export function Footer() {
     return (
         <div className='footer'>
                         

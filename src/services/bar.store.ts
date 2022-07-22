@@ -11,8 +11,7 @@ export class BarHttpStore {
         return await resp.json();
     }
 
-    async getBar(id: iBar['_id']): Promise<iBar> {
-        if (!id) throw new Error()
+    async getBar(id: string): Promise<iBar> {
         const resp = await fetch(this.apiUrl + id.toString());
         return await resp.json();
     }
